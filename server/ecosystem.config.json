@@ -1,0 +1,19 @@
+{
+    "apps": [
+      {
+        "name": "Travel App",
+        "script": "./src/index.mjs",
+        "instances": 4,
+        "autorestart": true,
+        "watch": false,
+        "log_date_format": "YYYY-MM-DD HH:mm:ss",
+        "out_file": "./logs/outputs/out-instance-0.log",
+        "error_file": "./logs/errors/err-instance-0.log",
+        "exec_mode": "cluster",
+        "env": {
+          "NODE_ENV": "production",
+          "PORT": "8080"
+        }
+      }
+    ]
+  }

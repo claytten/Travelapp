@@ -1,0 +1,56 @@
+{
+  "env": {
+      "browser": true,
+      "es2021": true,
+      "jest": true
+  },
+  "extends": [
+      "airbnb-base",
+      "plugin:jest/recommended", 
+      "plugin:security/recommended", 
+      "plugin:prettier/recommended"
+  ],
+  "parserOptions": {
+      "ecmaVersion": 12,
+      "sourceType": "module"
+  },
+  "plugins": ["jest", "security", "prettier"],
+  "settings": {
+    "jest": {
+      "version": 26
+    }
+  },
+  "rules": {
+    "comma-spacing": [
+      "error",
+      {
+        "before": false,
+        "after": true
+      }
+    ],
+    "no-param-reassign": 0,
+    "no-shadow": 0,
+    "no-console": 0,
+    "no-plusplus": 0,
+    "func-names": "off",
+    "no-underscore-dangle": "off",
+    "consistent-return": "off",
+    "jest/expect-expect": "off",
+    "security/detect-object-injection": "off",
+    "indent": ["error", 2],
+    "linebreak-style": ["error", "unix"],
+    "quotes": ["error", "single"],
+    "semi": ["error", "always"],
+    "import/extensions": ["error", "ignorePackages", {
+      "js": "never",
+      ".mjs": "never"
+    }],
+    "import/prefer-default-export": "off",
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": ["**/tests/*"]
+      }
+    ]
+  }
+}

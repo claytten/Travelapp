@@ -1,0 +1,93 @@
+{
+  "name": "travel-log-api",
+  "version": "0.0.0",
+  "description": "api for fullstack travel-log",
+  "author": "Claytten",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+xx"
+  },
+  "bugs": {
+    "url": "xx/issues"
+  },
+  "homepage": "xx#readme",
+  "main": "src/index.mjs",
+  "engines": {
+    "node": ">=14.15.4",
+    "npm": ">=6.14.10"
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development nodemon src/index.mjs",
+    "production": "pm2 start ecosystem.config.json",
+    "pm2": "pm2",
+    "test": "jest -i",
+    "test:watch": "jest -i --watchAll",
+    "coverage": "jest -i --coverage",
+    "lint": "eslint \"**/*.js\"",
+    "lint:fix": "npm run lint --fix",
+    "prettier": "prettier --check src/**/*.js",
+    "prettier:fix": "prettier --write src/**/*.js"
+  },
+  "dependencies": {
+    "argon2": "^0.27.0",
+    "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
+    "cookie-parser": "^1.3.5",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-mongo-sanitize": "^2.0.0",
+    "express-rate-limit": "^5.0.0",
+    "helmet": "^4.1.0",
+    "http-status": "^1.4.0",
+    "joi": "^17.3.0",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.24.0",
+    "mongoose": "^5.9.12",
+    "morgan": "^1.9.1",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "pm2": "^4.5.1",
+    "swagger-jsdoc": "4.2.0",
+    "swagger-ui-express": "4.1.4",
+    "validator": "^13.0.0",
+    "winston": "^3.2.1",
+    "xss-clean": "^0.1.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.0.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-prettier": "^7.1.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jest": "^24.1.3",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-security": "^1.4.0",
+    "jest": "^26.0.1",
+    "lint-staged": "^10.0.7",
+    "nodemon": "^2.0.0",
+    "prettier": "^2.0.5",
+    "supertest": "^6.0.1"
+  },
+  "keywords": [
+    "Full Stack MERN",
+    "Travel App",
+    "node",
+    "node.js",
+    "express",
+    "rest",
+    "api",
+    "mongodb",
+    "mongoose",
+    "es8",
+    "es9",
+    "jest",
+    "docker",
+    "passport",
+    "joi",
+    "eslint",
+    "prettier"
+  ]
+}
