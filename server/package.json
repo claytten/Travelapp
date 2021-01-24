@@ -6,12 +6,12 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "git+xx"
+    "url": "git+https://github.com/claytten/fullstack-MERN-Travelapp.git"
   },
   "bugs": {
-    "url": "xx/issues"
+    "url": "https://github.com/claytten/fullstack-MERN-Travelapp.git/issues"
   },
-  "homepage": "xx#readme",
+  "homepage": "https://github.com/claytten/fullstack-MERN-Travelapp.git#readme",
   "main": "src/index.mjs",
   "engines": {
     "node": ">=14.15.4",
@@ -76,11 +76,15 @@
     "Travel App",
     "node",
     "node.js",
+    "boilerplate",
+    "generator",
     "express",
     "rest",
     "api",
     "mongodb",
     "mongoose",
+    "es6",
+    "es7",
     "es8",
     "es9",
     "jest",

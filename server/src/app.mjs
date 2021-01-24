@@ -8,6 +8,7 @@ import mongoSanitize from 'express-mongo-sanitize';
 import passport from 'passport';
 import httpStatus from 'http-status';
 import config from './config/index.mjs';
+import jwtStrategy from './config/passport.mjs';
 import { successHandler, errorHandler } from './config/morgan.mjs';
 import ApiError from './utils/ApiError.mjs';
 import { errorConverter } from './api/middlewares/error.mjs';
@@ -39,6 +40,7 @@ app.options('*', cors()); // you can check on repository cors to more options co
 
 // enabling jwt authentication
 app.use(passport.initialize());
+passport.use('jwt', jwtStrategy);
 
 // callback a 404 error for any unknown api request
 app.use((req, res, next) => {
