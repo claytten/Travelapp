@@ -7,11 +7,11 @@ import helmet from 'helmet';
 import mongoSanitize from 'express-mongo-sanitize';
 import passport from 'passport';
 import httpStatus from 'http-status';
+import { errors } from 'celebrate';
 import config from './config/index.mjs';
 import jwtStrategy from './config/passport.mjs';
 import { successHandler, errorHandler } from './config/morgan.mjs';
-import ApiError from './utils/ApiError.mjs';
-import { errorConverter } from './api/middlewares/error.mjs';
+import routes from './api/routes/v1/index.mjs';
 
 const app = express();
 
@@ -42,12 +42,14 @@ app.options('*', cors()); // you can check on repository cors to more options co
 app.use(passport.initialize());
 passport.use('jwt', jwtStrategy);
 
+// v1 api routes
+app.use('/v1', routes);
+
 // callback a 404 error for any unknown api request
 app.use((req, res, next) => {
-  next(new ApiError(httpStatus.NOT_FOUND, 'Not Found'));
+  res.status(httpStatus.NOT_FOUND).json({ status: httpStatus.NOT_FOUND, message: 'Not Found' });
+  next();
 });
-
-// converting if has unkown api request
-app.use(errorConverter);
+app.use(errors());
 
 export default app;

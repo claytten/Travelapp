@@ -52,27 +52,26 @@ const adminSchema = mongoose.Schema(
  * @param {ObjectId} {excluderAdminId} - id of the admin account to be excluded
  * @return {Promise<boolean>}
  */
-adminSchema.statics.isEmailTaken = async (email, excludedAdminId) => {
-  const admin = await this.findOne({ email, _id: { $ne: excludedAdminId } });
+adminSchema.statics.isEmailTaken = async function (email, excludeUserId) {
+  const admin = await this.findOne({ email, _id: { $ne: excludeUserId } });
   return !!admin;
 };
 
 /**
  * Check if password matches the admin account
+ * @param {string} recordPassword
  * @param {string} password
  * @returns {Promise<boolean>}
  */
-adminSchema.methods.isPasswordMatch = async (password) => {
-  const admin = this;
-  const authorize = await argon2.verify(password, admin.password);
+adminSchema.statics.isPasswordMatch = async function (recordPassword, password) {
+  const authorize = await argon2.verify(recordPassword, password);
   return authorize;
 };
 
-adminSchema.pre('save', async (next) => {
-  const admin = this;
-  if (admin.isModified('password')) {
+adminSchema.pre('save', async function (next) {
+  if (this.isModified('password')) {
     const salt = randomBytes(32);
-    admin.password = await argon2.hash(admin.password, { salt });
+    this.password = await argon2.hash(this.password, { salt });
   }
   next();
 });
