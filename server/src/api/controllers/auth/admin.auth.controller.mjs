@@ -1,5 +1,11 @@
 import httpStatus from 'http-status';
-import { loginAdmin, createAdmin, generateAuthAdminToken } from '../../../services/index.mjs';
+import {
+  loginAdmin,
+  refreshAuth,
+  logout as logoutService,
+  createAdmin,
+  generateAuthAdminToken,
+} from '../../../services/index.mjs';
 import logger from '../../../config/logger.mjs';
 
 export const login = async (req, res) => {
@@ -35,4 +41,14 @@ export const register = async (req, res) => {
     admin,
     token,
   });
+};
+
+export const refreshTokens = async (req, res) => {
+  const tokens = await refreshAuth(req.body.refreshToken);
+  res.send({ ...tokens });
+};
+
+export const logout = async (req, res) => {
+  await logoutService(req.body.refreshToken);
+  res.status(httpStatus.NO_CONTENT).send();
 };

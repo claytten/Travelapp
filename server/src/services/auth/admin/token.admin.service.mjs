@@ -33,6 +33,21 @@ export const saveToken = async (token, adminId, expired, type, blacklisted = fal
 };
 
 /**
+ * Verifying token and return new token or throwing an error if its not valid
+ * @param {string} token
+ * @param {string} type
+ * @return {Promise<Token>}
+ */
+export const verifyToken = async (token, type) => {
+  const payload = jwt.verify(token, config.jwt.secret);
+  const tokenDoc = await AdminModel.tokenModel.findOne({ token, type, admin: payload.sub, blacklisted: false });
+  if (!tokenDoc) {
+    throw new Error('Token not found');
+  }
+  return tokenDoc;
+};
+
+/**
  * Generate auth token
  * @param {Admin} admin
  * @return {Promise<Object>}

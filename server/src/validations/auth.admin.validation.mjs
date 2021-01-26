@@ -22,3 +22,15 @@ export const register = celebrate({
     // $/
   }),
 });
+
+export const logout = celebrate({
+  body: Joi.object({
+    refreshToken: Joi.string().required(),
+  }),
+});
+
+export const refreshToken = celebrate({
+  body: Joi.object({
+    refreshToken: Joi.string().required(),
+  }),
+});

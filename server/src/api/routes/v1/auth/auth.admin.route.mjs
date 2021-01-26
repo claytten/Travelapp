@@ -6,11 +6,7 @@ const router = Router();
 
 router.post('/login', authAdminValidation.login, authAdminController.login);
 router.post('/register', authAdminValidation.register, authAdminController.register);
-router.post('/logout', (req, res) => {
-  res.json({ data: req.body }).status(200).end();
-});
-router.post('/refresh-tokens', (req, res) => {
-  res.json({ data: req.body }).status(200).end();
-});
+router.post('/logout', authAdminValidation.logout, authAdminController.logout);
+router.post('/refresh-tokens', authAdminValidation.refreshToken, authAdminController.refreshTokens);
 
 export default router;
