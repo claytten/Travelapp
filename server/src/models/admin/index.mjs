@@ -1,4 +1,4 @@
 import adminModel from './admin.model.mjs';
-import adminToken from './token.model.mjs';
+import tokenModel from './token.model.mjs';
 
-export { adminModel, adminToken };
+export const AdminModel = { adminModel, tokenModel };

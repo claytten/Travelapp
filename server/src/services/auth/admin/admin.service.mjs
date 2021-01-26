@@ -1,4 +1,4 @@
-import { adminModel } from '../../../models/admin/index.mjs';
+import { AdminModel } from '../../../models/admin/index.mjs';
 
 /**
  * Get admin by id
@@ -6,7 +6,7 @@ import { adminModel } from '../../../models/admin/index.mjs';
  * @return {Promise<Admin>}
  */
 export const getAdminById = async (id) => {
-  const adminId = await adminModel.findById(id);
+  const adminId = await AdminModel.adminModel.findById(id);
   return adminId;
 };
 
@@ -16,7 +16,7 @@ export const getAdminById = async (id) => {
  * @return {Promise<Admin>}
  */
 export const getAdminByEmail = async (email) => {
-  const dataModel = await adminModel.findOne({ email });
+  const dataModel = await AdminModel.adminModel.findOne({ email });
   return dataModel;
 };
 
@@ -26,10 +26,10 @@ export const getAdminByEmail = async (email) => {
  * @return {Promise<Admin>}
  */
 export const createAdmin = async (adminBody) => {
-  if (await adminModel.isEmailTaken(adminBody.email)) {
+  if (await AdminModel.adminModel.isEmailTaken(adminBody.email)) {
     return;
   }
-  const admin = await adminModel.create(adminBody);
+  const admin = await AdminModel.adminModel.create(adminBody);
   return admin;
 };
 
@@ -40,6 +40,6 @@ export const createAdmin = async (adminBody) => {
  * @return {Promise<boolean>}
  */
 export const verifyPassword = async (recordPassword, password) => {
-  const verifyPassword = await adminModel.isPasswordMatch(recordPassword, password);
+  const verifyPassword = await AdminModel.adminModel.isPasswordMatch(recordPassword, password);
   return verifyPassword;
 };

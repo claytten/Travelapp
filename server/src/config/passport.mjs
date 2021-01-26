@@ -1,11 +1,11 @@
 import { Strategy, ExtractJwt } from 'passport-jwt';
 import config from './index.mjs';
 import { tokenTypes } from './token.mjs';
-import { adminModel } from '../models/admin/index.mjs';
+import { AdminModel } from '../models/admin/index.mjs';
 
 const jwtOptions = {
   secretOrKey: config.jwt.secret,
-  jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+  jwtFromRequest: ExtractJwt.fromHeader('Authorization'),
 };
 
 const jwtVerify = async (payload, done) => {
@@ -13,7 +13,7 @@ const jwtVerify = async (payload, done) => {
     if (payload.type !== tokenTypes.ACCESS) {
       throw new Error('Invalid token Type');
     }
-    const admin = await adminModel.findById(payload.sub);
+    const admin = await AdminModel.adminModel.findById(payload.sub);
     if (!admin) {
       return done(null, false);
     }

@@ -12,6 +12,8 @@ import config from './config/index.mjs';
 import jwtStrategy from './config/passport.mjs';
 import { successHandler, errorHandler } from './config/morgan.mjs';
 import routes from './api/routes/v1/index.mjs';
+import ApiError from './utils/ApiError.mjs';
+import { errorHandler as globalError, errorConverter } from './api/middlewares/error.middleware.mjs';
 
 const app = express();
 
@@ -47,9 +49,15 @@ app.use('/v1', routes);
 
 // callback a 404 error for any unknown api request
 app.use((req, res, next) => {
-  res.status(httpStatus.NOT_FOUND).json({ status: httpStatus.NOT_FOUND, message: 'Not Found' });
-  next();
+  next(new ApiError(httpStatus.NOT_FOUND, 'Not Found'));
 });
+// convert error to ApiError, if needed
+app.use(errorConverter);
+
+// handling errorConverter to JSON
+app.use(globalError);
+
+// Error handling checking req.body with celebrate Joi
 app.use(errors());
 
 export default app;

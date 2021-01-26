@@ -2,6 +2,7 @@ import jwt from 'jsonwebtoken';
 import moment from 'moment';
 import config from '../../../config/index.mjs';
 import { tokenTypes } from '../../../config/token.mjs';
+import { AdminModel } from '../../../models/index.mjs';
 
 /**
  * Generate Token
@@ -20,6 +21,17 @@ export const generateToken = (adminId, expired, type, secret = config.jwt.secret
   return jwt.sign(payload, secret);
 };
 
+export const saveToken = async (token, adminId, expired, type, blacklisted = false) => {
+  const tokenDoc = await AdminModel.tokenModel.create({
+    token,
+    admin: adminId,
+    expired: expired.toDate(),
+    type,
+    blacklisted,
+  });
+  return tokenDoc;
+};
+
 /**
  * Generate auth token
  * @param {Admin} admin
@@ -31,6 +43,7 @@ export const generateAuthAdminToken = async (admin) => {
 
   const refreshTokenExpired = moment().add(config.jwt.refreshExpirationDays, 'days');
   const refreshToken = generateToken(admin.id, refreshTokenExpired, tokenTypes.REFRESH);
+  await saveToken(refreshToken, admin.id, refreshTokenExpired, tokenTypes.REFRESH);
 
   return {
     access: {
