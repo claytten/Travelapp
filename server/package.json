@@ -6,12 +6,12 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "git+https://gitlab.com/claytten/travel-log.git"
+    "url": "git+https://github.com/claytten/fullstack-MERN-Travelapp.git"
   },
   "bugs": {
-    "url": "https://gitlab.com/claytten/travel-log/issues"
+    "url": "https://github.com/claytten/fullstack-MERN-Travelapp/issues"
   },
-  "homepage": "https://gitlab.com/claytten/travel-log#readme",
+  "homepage": "https://github.com/claytten/fullstack-MERN-Travelapp#readme",
   "main": "src/index.mjs",
   "engines": {
     "node": ">=14.0.0",
