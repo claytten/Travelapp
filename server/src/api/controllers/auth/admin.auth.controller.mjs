@@ -7,8 +7,9 @@ import {
   generateAuthAdminToken,
 } from '../../../services/index.mjs';
 import logger from '../../../config/logger.mjs';
+import catchAsync from '../../../utils/catchAsync.mjs';
 
-export const login = async (req, res) => {
+export const login = catchAsync(async (req, res) => {
   const { email, password } = req.body;
   let token = null;
 
@@ -24,9 +25,9 @@ export const login = async (req, res) => {
     admin,
     token,
   });
-};
+});
 
-export const register = async (req, res) => {
+export const register = catchAsync(async (req, res) => {
   let token = null;
 
   logger.debug('Calling register Endpoint with req.body : %o', req.body);
@@ -41,14 +42,14 @@ export const register = async (req, res) => {
     admin,
     token,
   });
-};
+});
 
-export const refreshTokens = async (req, res) => {
+export const refreshTokens = catchAsync(async (req, res) => {
   const tokens = await refreshAuth(req.body.refreshToken);
   res.send({ ...tokens });
-};
+});
 
-export const logout = async (req, res) => {
+export const logout = catchAsync(async (req, res) => {
   await logoutService(req.body.refreshToken);
   res.status(httpStatus.NO_CONTENT).send();
-};
+});
