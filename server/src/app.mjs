@@ -14,6 +14,7 @@ import { successHandler, errorHandler } from './config/morgan.mjs';
 import routes from './api/routes/v1/index.mjs';
 import ApiError from './utils/ApiError.mjs';
 import { errorHandler as globalError, errorConverter } from './api/middlewares/error.middleware.mjs';
+import authRateLimiter from './api/middlewares/rateLimiter.middleware.mjs';
 
 const app = express();
 
@@ -43,6 +44,11 @@ app.options('*', cors()); // you can check on repository cors to more options co
 // enabling jwt authentication
 app.use(passport.initialize());
 passport.use('jwt', jwtStrategy);
+
+// limit failed request to auth admin endpoints
+if (config.env === 'production') {
+  app.use('/v1/auth/admin', authRateLimiter);
+}
 
 // v1 api routes
 app.use('/v1', routes);

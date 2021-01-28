@@ -5,7 +5,7 @@ import { AdminModel } from '../models/admin/index.mjs';
 
 const jwtOptions = {
   secretOrKey: config.jwt.secret,
-  jwtFromRequest: ExtractJwt.fromHeader('Authorization'),
+  jwtFromRequest: ExtractJwt.fromAuthHeaderWithScheme('Bearer'),
 };
 
 const jwtVerify = async (payload, done) => {
@@ -13,7 +13,7 @@ const jwtVerify = async (payload, done) => {
     if (payload.type !== tokenTypes.ACCESS) {
       throw new Error('Invalid token Type');
     }
-    const admin = await AdminModel.adminModel.findById(payload.sub);
+    const admin = await AdminModel.adminModel.findById({ _id: payload.sub });
     if (!admin) {
       return done(null, false);
     }

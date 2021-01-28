@@ -1,9 +1,11 @@
 import { Router } from 'express';
+import { auth } from '../../../middlewares/authAdmin.middleware.mjs';
+import { AdminController } from '../../../controllers/index.mjs';
+import { adminValidation } from '../../../../validations/index.mjs';
 
 const router = Router();
 
-router.post('/store', (req, res) => {
-  res.json({ success: true, message: req.body }).status(200).end();
-});
+router.route('/').get(auth('getProfile'), AdminController.profileLogin);
+router.route('/:adminId').put(auth('updateProfile'), adminValidation.updateProfile, AdminController.updateProfile);
 
 export default router;

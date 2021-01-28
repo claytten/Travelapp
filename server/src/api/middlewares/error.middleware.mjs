@@ -18,7 +18,6 @@ export const errorConverter = (err, req, res, next) => {
 // eslint-disable-next-line no-unused-vars
 export const errorHandler = (err, req, res, next) => {
   let { statusCode, message } = err;
-  console.log('this is stack error errorHandler', err);
   if (config.env === 'production' && !err.isOperational) {
     statusCode = httpStatus.INTERNAL_SERVER_ERROR;
     message = httpStatus[httpStatus.INTERNAL_SERVER_ERROR];

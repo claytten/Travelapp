@@ -1,4 +1,4 @@
-import { AdminModel } from '../../../models/admin/index.mjs';
+import { AdminModel } from '../../models/admin/index.mjs';
 
 /**
  * Get admin by id

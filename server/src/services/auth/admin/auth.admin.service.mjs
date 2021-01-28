@@ -1,5 +1,5 @@
 import httpStatus from 'http-status';
-import { getAdminById, getAdminByEmail, verifyPassword } from './admin.service.mjs';
+import { getAdminById, getAdminByEmail, verifyPassword } from '../../admin/admin.service.mjs';
 import ApiError from '../../../utils/ApiError.mjs';
 import { AdminModel } from '../../../models/index.mjs';
 import { tokenTypes } from '../../../config/token.mjs';

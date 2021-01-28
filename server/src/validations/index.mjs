@@ -1,3 +1,4 @@
 import { login, register, logout, refreshToken } from './auth.admin.validation.mjs';
+import { updateProfile } from './accountAdmin.validation.mjs';
 
-export const authAdminValidation = { login, register, logout, refreshToken };
+export const adminValidation = { login, register, logout, refreshToken, updateProfile };
