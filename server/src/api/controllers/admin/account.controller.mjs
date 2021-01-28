@@ -1,4 +1,4 @@
-import { updateProfile as saveProfile } from '../../../services/index.mjs';
+import { updateProfile as saveProfile, resetPass } from '../../../services/index.mjs';
 import catchAsync from '../../../utils/catchAsync.mjs';
 
 export const profileLogin = (req, res) => {
@@ -16,5 +16,14 @@ export const updateProfile = catchAsync(async (req, res) => {
     success: true,
     message: 'Update Successfully',
     update,
+  });
+});
+
+export const resetPassword = catchAsync(async (req, res) => {
+  const reset = await resetPass(req.params.adminId, req.body);
+  res.send({
+    success: true,
+    message: 'Update Password Successfully',
+    reset,
   });
 });

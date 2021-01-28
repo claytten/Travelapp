@@ -15,3 +15,12 @@ export const updateProfile = celebrate({
     // $/
   }),
 });
+
+export const resetPassword = celebrate({
+  body: Joi.object({
+    oldPassword: Joi.string().required(),
+    newPassword: Joi.string()
+      .required()
+      .regex(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/),
+  }),
+});
