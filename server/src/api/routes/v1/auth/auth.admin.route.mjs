@@ -1,12 +1,12 @@
 import { Router } from 'express';
 import { adminValidation } from '../../../../validations/index.mjs';
-import { AdminController } from '../../../controllers/index.mjs';
+import { adminController } from '../../../controllers/index.mjs';
 
 const router = Router();
 
-router.post('/login', adminValidation.login, AdminController.login);
-router.post('/register', adminValidation.register, AdminController.register);
-router.post('/logout', adminValidation.logout, AdminController.logout);
-router.post('/refresh-tokens', adminValidation.refreshToken, AdminController.refreshTokens);
+router.post('/login', adminValidation.login, adminController.login);
+router.post('/register', adminValidation.register, adminController.register);
+router.post('/logout', adminValidation.logout, adminController.logout);
+router.post('/refresh-tokens', adminValidation.refreshToken, adminController.refreshTokens);
 
 export default router;
