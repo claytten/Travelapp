@@ -13,3 +13,4 @@ package-lock.json
 
 # inside folder uploads
 uploads/*
+!uploads

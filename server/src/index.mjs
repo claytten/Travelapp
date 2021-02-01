@@ -2,11 +2,8 @@ import mongoose from 'mongoose';
 import app from './app.mjs';
 import config from './config/index.mjs';
 import logger from './config/logger.mjs';
-import { syncLink } from './utils/syncLink.mjs';
 
 let server;
-syncLink();
-logger.info('✌️ Storage Sync loaded');
 
 mongoose.connect(config.mongoose.url, config.mongoose.options).then(() => {
   logger.info('✌️ DB loaded and connected!');
