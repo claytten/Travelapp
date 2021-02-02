@@ -59,6 +59,7 @@ export const resetPass = async (adminId, data) => {
 export const saveImage = async (adminId, pathFile) => {
   const admin = await getAdminById(adminId);
   if (!admin) {
+    unlinkSync(join(resolve(), pathFile));
     throw new ApiError(httpStatus.NOT_FOUND, 'Admin Not Found');
   }
   if (admin.image !== null) {
