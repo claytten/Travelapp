@@ -29,7 +29,6 @@
     "lint:fix": "npm run lint --fix",
     "prettier": "prettier --check src/**/*.js",
     "prettier:fix": "prettier --write src/**/*.js",
-    "link:storage": "node ./src/utils/syncLink.mjs",
     "seeding": "cross-env NODE_ENV=development node ./seeders/index.seeder.mjs"
   },
   "dependencies": {

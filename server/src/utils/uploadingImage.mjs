@@ -1,12 +1,21 @@
+/* eslint-disable no-unused-expressions */
 import multer from 'multer';
 import { v4 as uuidv4 } from 'uuid';
-import { extname } from 'path';
+import { join, resolve, extname } from 'path';
+import { existsSync, mkdirSync } from 'fs';
+import ApiError from './ApiError.mjs';
 
 export const storage = multer.diskStorage({
   destination(req, file, cb) {
-    const pattern = req.route.path.split('/');
-    const getPath = pattern[pattern.length - 2];
-    cb(null, `uploads/${getPath}`);
+    try {
+      const pattern = req.baseUrl.split('/');
+      const getPath = pattern[pattern.length - 1];
+      const setPath = `uploads/${getPath}`;
+      !existsSync(join(resolve(), setPath)) && mkdirSync(join(resolve(), setPath), { recursive: true });
+      cb(null, setPath);
+    } catch (err) {
+      throw new ApiError(err);
+    }
   },
   filename(req, file, cb) {
     cb(null, `${uuidv4()}-${Date.now()}${extname(file.originalname)}`);
