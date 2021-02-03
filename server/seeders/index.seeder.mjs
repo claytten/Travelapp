@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 import config from '../src/config/index.mjs';
 import adminSeeder from './admin.seeder.mjs';
+import mapSeeder from './map.seeder.mjs';
 
 const mongoURL = process.env.MONGODB_URI || 'mongodb://localhost:27017/dbname';
 
@@ -14,7 +15,7 @@ const setupSeeder = async () => {
       await mongoose.connection.db.dropDatabase();
     }
   });
-  return Promise.all(adminSeeder())
+  return Promise.all(adminSeeder(), mapSeeder())
     .then(() => mongoose.disconnect())
     .catch((err) => console.log(err));
 };
