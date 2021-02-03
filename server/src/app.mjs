@@ -8,6 +8,7 @@ import mongoSanitize from 'express-mongo-sanitize';
 import passport from 'passport';
 import httpStatus from 'http-status';
 import { errors } from 'celebrate';
+import { join, resolve } from 'path';
 import config from './config/index.mjs';
 import jwtStrategy from './config/passport.mjs';
 import { successHandler, errorHandler } from './config/morgan.mjs';
@@ -27,8 +28,11 @@ if (config.env !== 'testing') {
 app.use(helmet());
 
 // parse request to json using body parser
-app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+// enable viewing image on folder uploads
+app.use('/uploads', express.static(join(resolve(), '/uploads')));
 
 // sanitaze request data
 app.use(xss());
