@@ -11,6 +11,16 @@ export const getAdminById = async (id) => {
 };
 
 /**
+ * Get Map by id
+ * @param {ObjectId} id
+ * @return {Promise<Object>}
+ */
+export const getMapById = async (id) => {
+  const mapId = await AdminModel.mapModel.findById(id);
+  return mapId;
+};
+
+/**
  * Get admin by email
  * @param {string} email
  * @return {Promise<Admin>}

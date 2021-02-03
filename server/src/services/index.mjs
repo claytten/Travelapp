@@ -2,6 +2,7 @@ import { loginAdmin, refreshAuth, logout } from './auth/admin/auth.admin.service
 import { getAdminById, createAdmin } from './admin/admin.service.mjs';
 import { generateToken, generateAuthAdminToken } from './auth/admin/token.admin.service.mjs';
 import { updateProfile, resetPass, saveImage } from './admin/account/accountAdmin.service.mjs';
+import { getMaps, storingMap, updatingMap, singleDestroy } from './admin/maps/map.service.mjs';
 
 export {
   loginAdmin,
@@ -14,4 +15,8 @@ export {
   updateProfile,
   resetPass,
   saveImage,
+  getMaps,
+  storingMap,
+  updatingMap,
+  singleDestroy,
 };
