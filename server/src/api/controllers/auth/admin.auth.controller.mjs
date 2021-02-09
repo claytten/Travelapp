@@ -19,26 +19,9 @@ export const login = catchAsync(async (req, res) => {
     logger.debug('Generating token : %o', email);
     token = await generateAuthAdminToken(admin);
   }
-  res.status(httpStatus.CREATED).send({
-    success: true,
-    message: 'Login Successfully',
-    admin,
-    token,
-  });
-});
-
-export const register = catchAsync(async (req, res) => {
-  let token = null;
-
-  logger.debug('Calling register Endpoint with req.body : %o', req.body);
-  const admin = await createAdmin(req.body);
-  if (admin) {
-    logger.debug('Generating token register : %o', req.body.email);
-    token = await generateAuthAdminToken(admin);
-  }
   res.send({
     success: true,
-    message: 'Register Successfully',
+    message: 'Login Successfully',
     admin,
     token,
   });

@@ -5,7 +5,6 @@ import { adminController } from '../../../controllers/index.mjs';
 const router = Router();
 
 router.post('/login', adminValidation.login, adminController.login);
-router.post('/register', adminValidation.register, adminController.register);
 router.post('/logout', adminValidation.logout, adminController.logout);
 router.post('/refresh-tokens', adminValidation.refreshToken, adminController.refreshTokens);
 
