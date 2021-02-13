@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-expressions */
 import multer from 'multer';
+import httpStatus from 'http-status';
 import { v4 as uuidv4 } from 'uuid';
 import { join, resolve, extname } from 'path';
 import { existsSync, mkdirSync } from 'fs';
@@ -10,7 +11,7 @@ export const storage = multer.diskStorage({
     try {
       const pattern = req.baseUrl.split('/');
       const getPath = pattern[pattern.length - 1];
-      const setPath = `uploads/${getPath}`;
+      const setPath = `uploads${process.env.NODE_ENV === 'testing' ? '-testing/' : '/'}${getPath}`;
       !existsSync(join(resolve(), setPath)) && mkdirSync(join(resolve(), setPath), { recursive: true });
       cb(null, setPath);
     } catch (err) {
@@ -27,6 +28,6 @@ export const fileFilter = (req, file, cb) => {
   if (allowedFileTypes.includes(file.mimetype)) {
     cb(null, true);
   } else {
-    cb(null, false);
+    cb(new ApiError(httpStatus.UNAUTHORIZED, 'File Image is not supported!'), false);
   }
 };
