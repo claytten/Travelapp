@@ -15,6 +15,10 @@ router.put(
   adminValidation.resetPassword,
   adminController.resetPassword,
 );
-router.put('/upload-photo/:adminId', multer({ storage, fileFilter }).single('image'), adminController.uploadPhoto);
+router.put(
+  '/upload-photo/:adminId',
+  multer({ storage, fileFilter }).single('image'),
+  adminController.accountUploadPhoto,
+);
 
 export default router;

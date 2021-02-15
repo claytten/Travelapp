@@ -1,5 +1,5 @@
 import httpStatus from 'http-status';
-import { updateProfile as saveProfile, resetPass, saveImage } from '../../../services/index.mjs';
+import { updateProfile as saveProfile, resetPass, saveAccountImage } from '../../../services/index.mjs';
 import catchAsync from '../../../utils/catchAsync.mjs';
 import ApiError from '../../../utils/ApiError.mjs';
 
@@ -30,10 +30,10 @@ export const resetPassword = catchAsync(async (req, res) => {
   });
 });
 
-export const uploadPhoto = catchAsync(async (req, res) => {
+export const accountUploadPhoto = catchAsync(async (req, res) => {
   if (!req.file.path) {
     throw new ApiError(httpStatus.BAD_REQUEST, 'Failed Upload Image');
   }
-  await saveImage(req.params.adminId, req.file.path);
+  await saveAccountImage(req.params.adminId, req.file.path);
   res.status(httpStatus.NO_CONTENT).send();
 });

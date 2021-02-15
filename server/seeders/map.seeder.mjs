@@ -10,7 +10,7 @@ const mapSeeder = () => {
     {
       name: 'bayat',
       image: null,
-      coordinate: '-7.784022, 110.650528',
+      coordinate: ['-7.784022', '110.650528'],
     },
   ];
   return mapList.map(async (item) => {

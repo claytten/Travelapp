@@ -66,3 +66,26 @@ export const singleDestroy = async (mapId) => {
     throw new ApiError(httpStatus.NOT_FOUND, 'Map Not Found');
   }
 };
+
+/**
+ * Updating map image
+ * @param {string} mapId
+ * @param {stirng} pathFile
+ * @return {Promise<object>}
+ */
+export const saveMapImage = async (mapId, pathFile) => {
+  const map = await getMapById(mapId);
+  if (!map) {
+    unlinkSync(join(resolve(), pathFile));
+    throw new ApiError(httpStatus.NOT_FOUND, 'Map Not Found');
+  }
+  if (map.image !== null) {
+    unlinkSync(join(resolve(), map.image));
+  }
+
+  Object.assign(map, {
+    image: pathFile,
+  });
+  await map.save();
+  return map;
+};

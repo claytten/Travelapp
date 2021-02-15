@@ -52,7 +52,7 @@ export const resetPass = async (adminId, data) => {
  * @param {stirng} pathFile
  * @return {Promise<object>}
  */
-export const saveImage = async (adminId, pathFile) => {
+export const saveAccountImage = async (adminId, pathFile) => {
   const admin = await getAdminById(adminId);
   if (!admin) {
     unlinkSync(join(resolve(), pathFile));

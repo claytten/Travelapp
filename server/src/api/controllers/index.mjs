@@ -1,6 +1,13 @@
 import { login, refreshTokens, logout } from './auth/admin.auth.controller.mjs';
-import { profileLogin, updateProfile, resetPassword, uploadPhoto } from './admin/account.controller.mjs';
-import { getAllMaps, storeMap, updateMap, destroyMapSingle, destroyMultipleMap } from './admin/map.controller.mjs';
+import { profileLogin, updateProfile, resetPassword, accountUploadPhoto } from './admin/account.controller.mjs';
+import {
+  getAllMaps,
+  storeMap,
+  updateMap,
+  mapUploadPhoto,
+  destroyMapSingle,
+  destroyMultipleMap,
+} from './admin/map.controller.mjs';
 
 export const adminController = {
   login,
@@ -9,10 +16,11 @@ export const adminController = {
   profileLogin,
   updateProfile,
   resetPassword,
-  uploadPhoto,
+  accountUploadPhoto,
   getAllMaps,
   storeMap,
   updateMap,
+  mapUploadPhoto,
   destroyMapSingle,
   destroyMultipleMap,
 };

@@ -1,22 +1,24 @@
 import mongoose from 'mongoose';
 
-const mapSchema = mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-    trim: true,
+const mapSchema = mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    image: {
+      type: String,
+      trim: true,
+      default: null,
+    },
+    coordinate: {
+      type: Array,
+      default: [],
+    },
   },
-  image: {
-    type: String,
-    trim: true,
-    default: null,
-  },
-  coordinate: {
-    type: String,
-    trim: true,
-    unique: true,
-  },
-});
+  { timestamps: true },
+);
 
 /**
  * Checking request if coordinate is taken
